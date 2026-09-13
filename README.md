@@ -13,6 +13,6 @@ Para probar este proyecto en tu entorno local, sigue estos pasos:
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/CONTERNICO845/-Actividad-1.3-Constructores-y-Sobrecarga..git]
+   git clone [https://github.com/CONTERNICO845/Actividad-1.3-Constructores-y-Sobrecarga.git]
    ```
    
