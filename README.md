@@ -1,1 +1,18 @@
-# -Actividad-1.3-Constructores-y-Sobrecarga.
+# Actividad 1.3: Constructores y Sobrecarga - Sistema de Taxis
+
+Este repositorio contiene el código fuente de la Práctica 1.3 de la materia de Estructura de Datos (2026B_IH060_ED). El proyecto implementa los principios fundamentales de la Programación Orientada a Objetos (POO) mediante una interfaz gráfica desarrollada en Java para la administración de un sistema de taxis.
+
+## 👥 Integrantes del Equipo 10 (Taxis)
+* Leyva Perez Victor Manuel
+* Espinoza López Manuel Ángel 
+* Carmona Barbosa Geovani Gael
+
+## 🛠️ Instrucciones de Ejecución
+
+Para probar este proyecto en tu entorno local, sigue estos pasos:
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [https://github.com/CONTERNICO845/E10_Taxis_Act_1_3.git](https://github.com/CONTERNICO845/E10_Taxis_Act_1_3.git)
+   ```
+   
