@@ -13,6 +13,6 @@ Para probar este proyecto en tu entorno local, sigue estos pasos:
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone [https://github.com/CONTERNICO845/E10_Taxis_Act_1_3.git](https://github.com/CONTERNICO845/E10_Taxis_Act_1_3.git)
+   git clone [https://github.com/CONTERNICO845/-Actividad-1.3-Constructores-y-Sobrecarga..git]
    ```
    
