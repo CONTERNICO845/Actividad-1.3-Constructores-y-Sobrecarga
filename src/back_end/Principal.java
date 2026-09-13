@@ -2,21 +2,33 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package taxis.igu;
+package back_end;
 
 /**
- *
- * @author VictorL
+Leyva Perez Victor Manuel
+Espinoza López Manuel Ángel
+Carmona Barbosa Geovani Gael
  */
 public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
+
+    private front_end.Cliente objCliente;
+    private front_end.Conductor objConductor;
+    private front_end.Administrador objAdministrador;
+    private front_end.Vehiculo objVehiculo;
+    private front_end.Tarifa objTarifa;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        jButton6.addActionListener(this::jButton6ActionPerformed);
+        jButton7.addActionListener(this::jButton7ActionPerformed);
+        jButton8.addActionListener(this::jButton8ActionPerformed);
+        jButton9.addActionListener(this::jButton9ActionPerformed);
+        jButton10.addActionListener(this::jButton10ActionPerformed);
     }
 
     /**
@@ -176,7 +188,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cliente", jPanel3);
@@ -235,7 +247,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Conductor", jPanel4);
@@ -355,7 +367,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Vehiculo", jPanel8);
@@ -416,7 +428,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Tarifa", jPanel9);
@@ -531,8 +543,590 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        accionCrear();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
+        accionBuscar();
+    }
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {
+        accionMostrar();
+    }
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {
+        accionActualizar();
+    }
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
+        accionBorrar();
+    }
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {
+        accionDestruir();
+    }
+
+    private int getPestanaActiva() {
+        return jTabbedPane1.getSelectedIndex();
+    }
+
+    private void accionCrear() {
+        switch (getPestanaActiva()) {
+            case 0 -> crearCliente();
+            case 1 -> crearConductor();
+            case 2 -> crearAdministrador();
+            case 3 -> crearVehiculo();
+            case 4 -> crearTarifa();
+        }
+    }
+
+    private void accionBuscar() {
+        switch (getPestanaActiva()) {
+            case 0 -> buscarCliente();
+            case 1 -> buscarConductor();
+            case 2 -> buscarAdministrador();
+            case 3 -> buscarVehiculo();
+            case 4 -> buscarTarifa();
+        }
+    }
+
+    private void accionMostrar() {
+        switch (getPestanaActiva()) {
+            case 0 -> mostrarCliente();
+            case 1 -> mostrarConductor();
+            case 2 -> mostrarAdministrador();
+            case 3 -> mostrarVehiculo();
+            case 4 -> mostrarTarifa();
+        }
+    }
+
+    private void accionActualizar() {
+        switch (getPestanaActiva()) {
+            case 0 -> actualizarCliente();
+            case 1 -> actualizarConductor();
+            case 2 -> actualizarAdministrador();
+            case 3 -> actualizarVehiculo();
+            case 4 -> actualizarTarifa();
+        }
+    }
+
+    private void accionBorrar() {
+        switch (getPestanaActiva()) {
+            case 0 -> borrarCliente();
+            case 1 -> borrarConductor();
+            case 2 -> borrarAdministrador();
+            case 3 -> borrarVehiculo();
+            case 4 -> borrarTarifa();
+        }
+    }
+
+    private void accionDestruir() {
+        switch (getPestanaActiva()) {
+            case 0 -> destruirCliente();
+            case 1 -> destruirConductor();
+            case 2 -> destruirAdministrador();
+            case 3 -> destruirVehiculo();
+            case 4 -> destruirTarifa();
+        }
+    }
+
+    private void crearCliente() {
+        try {
+            if (objCliente != null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Ya existe un cliente. Destruyalo antes de crear uno nuevo.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String curp = jTextField1.getText();
+            String nombres = jTextField2.getText();
+            String apellidos = jTextField3.getText();
+            String edadStr = jTextField4.getText().trim();
+            String telefono = jTextField5.getText();
+            if (edadStr.isEmpty()) throw new IllegalArgumentException("La edad no puede estar vacia.");
+            int edad = Integer.parseInt(edadStr);
+            objCliente = new front_end.Cliente(curp, nombres, apellidos, edad, telefono);
+            jTextArea1.setText("Cliente creado exitosamente.\n" + objCliente.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "La edad debe ser un numero entero valido.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void buscarCliente() {
+        String curp = javax.swing.JOptionPane.showInputDialog(this, "Ingrese el CURP a buscar:", "Buscar Cliente", javax.swing.JOptionPane.QUESTION_MESSAGE);
+        if (curp == null) return;
+        curp = curp.trim().toUpperCase();
+        if (curp.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El CURP no puede estar vacio.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (objCliente != null && objCliente.getCurp().equals(curp)) {
+            jTextArea1.setText("Cliente encontrado.\n" + objCliente.toString());
+        } else {
+            jTextArea1.setText("No existe un cliente con CURP: " + curp);
+        }
+    }
+
+    private void mostrarCliente() {
+        jTextArea1.setText(objCliente == null ? "No existe un cliente actualmente." : objCliente.toString());
+    }
+
+    private void actualizarCliente() {
+        try {
+            if (objCliente == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "No existe un cliente para actualizar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String nombres = jTextField2.getText();
+            String apellidos = jTextField3.getText();
+            String edadStr = jTextField4.getText().trim();
+            String telefono = jTextField5.getText();
+            if (!nombres.trim().isEmpty()) objCliente.setNombres(nombres);
+            if (!apellidos.trim().isEmpty()) objCliente.setApellidos(apellidos);
+            if (!edadStr.isEmpty()) objCliente.setEdad(Integer.parseInt(edadStr));
+            if (!telefono.trim().isEmpty()) objCliente.setTelefono(telefono);
+            jTextArea1.setText("Cliente actualizado.\n" + objCliente.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "La edad debe ser un numero entero valido.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void borrarCliente() {
+        if (objCliente == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un cliente para borrar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se borraran los datos del cliente. Confirmar?", "Borrar", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objCliente.setNombres("(borrado)");
+            objCliente.setApellidos("(borrado)");
+            objCliente.setTelefono("0000000000");
+            objCliente.setEstado("Inactivo");
+            limpiarCamposCliente();
+            jTextArea1.setText("Datos del cliente borrados. La referencia sigue activa.\n" + objCliente.toString());
+        }
+    }
+
+    private void destruirCliente() {
+        if (objCliente == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un cliente para destruir.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se eliminara la referencia al cliente. Esta accion no se puede deshacer. Confirmar?", "Destruir", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objCliente = null;
+            limpiarCamposCliente();
+            jTextArea1.setText("Referencia al cliente destruida. Ya no existe en la aplicacion.");
+        }
+    }
+
+    private void limpiarCamposCliente() {
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+    }
+
+    private void crearConductor() {
+        try {
+            if (objConductor != null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Ya existe un conductor. Destruyalo antes de crear uno nuevo.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String curp = jTextField6.getText();
+            String nomCompleto = jTextField7.getText();
+            String numLicencia = jTextField8.getText();
+            String placas = jTextField9.getText();
+            String edadStr = jTextField10.getText().trim();
+            if (edadStr.isEmpty()) throw new IllegalArgumentException("La edad no puede estar vacia.");
+            int edad = Integer.parseInt(edadStr);
+            objConductor = new front_end.Conductor(curp, nomCompleto, numLicencia, placas, edad);
+            jTextArea1.setText("Conductor creado exitosamente.\n" + objConductor.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "La edad debe ser un numero entero valido.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void buscarConductor() {
+        String curp = javax.swing.JOptionPane.showInputDialog(this, "Ingrese el CURP a buscar:", "Buscar Conductor", javax.swing.JOptionPane.QUESTION_MESSAGE);
+        if (curp == null) return;
+        curp = curp.trim().toUpperCase();
+        if (curp.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El CURP no puede estar vacio.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (objConductor != null && objConductor.getCurp().equals(curp)) {
+            jTextArea1.setText("Conductor encontrado.\n" + objConductor.toString());
+        } else {
+            jTextArea1.setText("No existe un conductor con CURP: " + curp);
+        }
+    }
+
+    private void mostrarConductor() {
+        jTextArea1.setText(objConductor == null ? "No existe un conductor actualmente." : objConductor.toString());
+    }
+
+    private void actualizarConductor() {
+        try {
+            if (objConductor == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "No existe un conductor para actualizar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String nomCompleto = jTextField7.getText();
+            String numLicencia = jTextField8.getText();
+            String placas = jTextField9.getText();
+            String edadStr = jTextField10.getText().trim();
+            if (!nomCompleto.trim().isEmpty()) objConductor.setNomCompleto(nomCompleto);
+            if (!numLicencia.trim().isEmpty()) objConductor.setNumLicencia(numLicencia);
+            if (!placas.trim().isEmpty()) objConductor.setPlacas(placas);
+            if (!edadStr.isEmpty()) objConductor.setEdad(Integer.parseInt(edadStr));
+            jTextArea1.setText("Conductor actualizado.\n" + objConductor.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "La edad debe ser un numero entero valido.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void borrarConductor() {
+        if (objConductor == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un conductor para borrar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se borraran los datos del conductor. Confirmar?", "Borrar", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objConductor.setNomCompleto("(borrado)");
+            objConductor.setNumLicencia("000000");
+            objConductor.setPlacas("AAA000");
+            objConductor.setEstado("Inactivo");
+            limpiarCamposConductor();
+            jTextArea1.setText("Datos del conductor borrados. La referencia sigue activa.\n" + objConductor.toString());
+        }
+    }
+
+    private void destruirConductor() {
+        if (objConductor == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un conductor para destruir.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se eliminara la referencia al conductor. Confirmar?", "Destruir", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objConductor = null;
+            limpiarCamposConductor();
+            jTextArea1.setText("Referencia al conductor destruida. Ya no existe en la aplicacion.");
+        }
+    }
+
+    private void limpiarCamposConductor() {
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextField8.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+    }
+
+    private void crearAdministrador() {
+        try {
+            if (objAdministrador != null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Ya existe un administrador. Destruyalo antes de crear uno nuevo.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String curp = jTextField11.getText();
+            String nombres = jTextField12.getText();
+            String apellidos = jTextField13.getText();
+            String numEmpleado = jTextField14.getText();
+            String turno = (String) jComboBox1.getSelectedItem();
+            objAdministrador = new front_end.Administrador(curp, nombres, apellidos, numEmpleado, turno);
+            jTextArea1.setText("Administrador creado exitosamente.\n" + objAdministrador.toString());
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void buscarAdministrador() {
+        String curp = javax.swing.JOptionPane.showInputDialog(this, "Ingrese el CURP a buscar:", "Buscar Administrador", javax.swing.JOptionPane.QUESTION_MESSAGE);
+        if (curp == null) return;
+        curp = curp.trim().toUpperCase();
+        if (curp.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El CURP no puede estar vacio.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (objAdministrador != null && objAdministrador.getCurp().equals(curp)) {
+            jTextArea1.setText("Administrador encontrado.\n" + objAdministrador.toString());
+        } else {
+            jTextArea1.setText("No existe un administrador con CURP: " + curp);
+        }
+    }
+
+    private void mostrarAdministrador() {
+        jTextArea1.setText(objAdministrador == null ? "No existe un administrador actualmente." : objAdministrador.toString());
+    }
+
+    private void actualizarAdministrador() {
+        try {
+            if (objAdministrador == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "No existe un administrador para actualizar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String nombres = jTextField12.getText();
+            String apellidos = jTextField13.getText();
+            String numEmpleado = jTextField14.getText();
+            String turno = (String) jComboBox1.getSelectedItem();
+            if (!nombres.trim().isEmpty()) objAdministrador.setNombres(nombres);
+            if (!apellidos.trim().isEmpty()) objAdministrador.setApellidos(apellidos);
+            if (!numEmpleado.trim().isEmpty()) objAdministrador.setNumEmpleado(numEmpleado);
+            if (!turno.equals("-")) objAdministrador.setTurno(turno);
+            jTextArea1.setText("Administrador actualizado.\n" + objAdministrador.toString());
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void borrarAdministrador() {
+        if (objAdministrador == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un administrador para borrar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se borraran los datos del administrador. Confirmar?", "Borrar", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objAdministrador.setNombres("(borrado)");
+            objAdministrador.setApellidos("(borrado)");
+            objAdministrador.setNumEmpleado("000");
+            objAdministrador.setEstado("Inactivo");
+            limpiarCamposAdministrador();
+            jTextArea1.setText("Datos del administrador borrados. La referencia sigue activa.\n" + objAdministrador.toString());
+        }
+    }
+
+    private void destruirAdministrador() {
+        if (objAdministrador == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un administrador para destruir.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se eliminara la referencia al administrador. Confirmar?", "Destruir", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objAdministrador = null;
+            limpiarCamposAdministrador();
+            jTextArea1.setText("Referencia al administrador destruida. Ya no existe en la aplicacion.");
+        }
+    }
+
+    private void limpiarCamposAdministrador() {
+        jTextField11.setText("");
+        jTextField12.setText("");
+        jTextField13.setText("");
+        jTextField14.setText("");
+        jComboBox1.setSelectedIndex(0);
+    }
+
+    private void crearVehiculo() {
+        try {
+            if (objVehiculo != null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Ya existe un vehiculo. Destruyalo antes de crear uno nuevo.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String placas = jTextField15.getText();
+            String marca = jTextField16.getText();
+            String modelo = jTextField17.getText();
+            String anioStr = jTextField18.getText().trim();
+            String color = jTextField19.getText();
+            if (anioStr.isEmpty()) throw new IllegalArgumentException("El anio no puede estar vacio.");
+            int anio = Integer.parseInt(anioStr);
+            objVehiculo = new front_end.Vehiculo(placas, marca, modelo, anio, color);
+            jTextArea1.setText("Vehiculo creado exitosamente.\n" + objVehiculo.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El anio debe ser un numero entero valido.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void buscarVehiculo() {
+        String placas = javax.swing.JOptionPane.showInputDialog(this, "Ingrese las Placas a buscar:", "Buscar Vehiculo", javax.swing.JOptionPane.QUESTION_MESSAGE);
+        if (placas == null) return;
+        placas = placas.trim().toUpperCase();
+        if (placas.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Las placas no pueden estar vacias.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (objVehiculo != null && objVehiculo.getPlacas().equals(placas)) {
+            jTextArea1.setText("Vehiculo encontrado.\n" + objVehiculo.toString());
+        } else {
+            jTextArea1.setText("No existe un vehiculo con placas: " + placas);
+        }
+    }
+
+    private void mostrarVehiculo() {
+        jTextArea1.setText(objVehiculo == null ? "No existe un vehiculo actualmente." : objVehiculo.toString());
+    }
+
+    private void actualizarVehiculo() {
+        try {
+            if (objVehiculo == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "No existe un vehiculo para actualizar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String marca = jTextField16.getText();
+            String modelo = jTextField17.getText();
+            String anioStr = jTextField18.getText().trim();
+            String color = jTextField19.getText();
+            if (!marca.trim().isEmpty()) objVehiculo.setMarca(marca);
+            if (!modelo.trim().isEmpty()) objVehiculo.setModelo(modelo);
+            if (!anioStr.isEmpty()) objVehiculo.setAnio(Integer.parseInt(anioStr));
+            if (!color.trim().isEmpty()) objVehiculo.setColor(color);
+            jTextArea1.setText("Vehiculo actualizado.\n" + objVehiculo.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El anio debe ser un numero entero valido.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void borrarVehiculo() {
+        if (objVehiculo == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un vehiculo para borrar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se borraran los datos del vehiculo. Confirmar?", "Borrar", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objVehiculo.setMarca("(borrado)");
+            objVehiculo.setModelo("(borrado)");
+            objVehiculo.setColor("(borrado)");
+            objVehiculo.setEstado("Inactivo");
+            limpiarCamposVehiculo();
+            jTextArea1.setText("Datos del vehiculo borrados. La referencia sigue activa.\n" + objVehiculo.toString());
+        }
+    }
+
+    private void destruirVehiculo() {
+        if (objVehiculo == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe un vehiculo para destruir.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se eliminara la referencia al vehiculo. Confirmar?", "Destruir", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objVehiculo = null;
+            limpiarCamposVehiculo();
+            jTextArea1.setText("Referencia al vehiculo destruida. Ya no existe en la aplicacion.");
+        }
+    }
+
+    private void limpiarCamposVehiculo() {
+        jTextField15.setText("");
+        jTextField16.setText("");
+        jTextField17.setText("");
+        jTextField18.setText("");
+        jTextField19.setText("");
+    }
+
+    private void crearTarifa() {
+        try {
+            if (objTarifa != null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Ya existe una tarifa. Destruyala antes de crear una nueva.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String tipoServicio = (String) jComboBox2.getSelectedItem();
+            String codigo = jTextField20.getText();
+            String minutosStr = jTextField21.getText().trim();
+            String precioKMStr = jTextField22.getText().trim();
+            String costoStr = jTextField23.getText().trim();
+            if (minutosStr.isEmpty()) throw new IllegalArgumentException("Los minutos no pueden estar vacios.");
+            if (precioKMStr.isEmpty()) throw new IllegalArgumentException("El precio K/M no puede estar vacio.");
+            if (costoStr.isEmpty()) throw new IllegalArgumentException("El costo no puede estar vacio.");
+            int minutos = Integer.parseInt(minutosStr);
+            double precioKM = Double.parseDouble(precioKMStr);
+            double costo = Double.parseDouble(costoStr);
+            objTarifa = new front_end.Tarifa(tipoServicio, codigo, minutos, precioKM, costo);
+            jTextArea1.setText("Tarifa creada exitosamente.\n" + objTarifa.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Minutos, Precio K/M y Costo deben ser valores numericos validos.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void buscarTarifa() {
+        String codigo = javax.swing.JOptionPane.showInputDialog(this, "Ingrese el Codigo a buscar:", "Buscar Tarifa", javax.swing.JOptionPane.QUESTION_MESSAGE);
+        if (codigo == null) return;
+        codigo = codigo.trim().toUpperCase();
+        if (codigo.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "El codigo no puede estar vacio.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (objTarifa != null && objTarifa.getCodigo().equals(codigo)) {
+            jTextArea1.setText("Tarifa encontrada.\n" + objTarifa.toString());
+        } else {
+            jTextArea1.setText("No existe una tarifa con codigo: " + codigo);
+        }
+    }
+
+    private void mostrarTarifa() {
+        jTextArea1.setText(objTarifa == null ? "No existe una tarifa actualmente." : objTarifa.toString());
+    }
+
+    private void actualizarTarifa() {
+        try {
+            if (objTarifa == null) {
+                javax.swing.JOptionPane.showMessageDialog(this, "No existe una tarifa para actualizar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            String tipoServicio = (String) jComboBox2.getSelectedItem();
+            String minutosStr = jTextField21.getText().trim();
+            String precioKMStr = jTextField22.getText().trim();
+            String costoStr = jTextField23.getText().trim();
+            if (!tipoServicio.equals("-")) objTarifa.setTipoServicio(tipoServicio);
+            if (!minutosStr.isEmpty()) objTarifa.setMinutos(Integer.parseInt(minutosStr));
+            if (!precioKMStr.isEmpty()) objTarifa.setPrecioKM(Double.parseDouble(precioKMStr));
+            if (!costoStr.isEmpty()) objTarifa.setCosto(Double.parseDouble(costoStr));
+            jTextArea1.setText("Tarifa actualizada.\n" + objTarifa.toString());
+        } catch (NumberFormatException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Minutos, Precio K/M y Costo deben ser valores numericos validos.", "Error de tipo", javax.swing.JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de validacion", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void borrarTarifa() {
+        if (objTarifa == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe una tarifa para borrar.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se borraran los datos de la tarifa. Confirmar?", "Borrar", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objTarifa.setMinutos(1);
+            objTarifa.setPrecioKM(0.01);
+            objTarifa.setCosto(0);
+            objTarifa.setEstado("Inactivo");
+            limpiarCamposTarifa();
+            jTextArea1.setText("Datos de la tarifa borrados. La referencia sigue activa.\n" + objTarifa.toString());
+        }
+    }
+
+    private void destruirTarifa() {
+        if (objTarifa == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe una tarifa para destruir.", "Aviso", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int r = javax.swing.JOptionPane.showConfirmDialog(this, "Se eliminara la referencia a la tarifa. Confirmar?", "Destruir", javax.swing.JOptionPane.YES_NO_OPTION);
+        if (r == javax.swing.JOptionPane.YES_OPTION) {
+            objTarifa = null;
+            limpiarCamposTarifa();
+            jTextArea1.setText("Referencia a la tarifa destruida. Ya no existe en la aplicacion.");
+        }
+    }
+
+    private void limpiarCamposTarifa() {
+        jComboBox2.setSelectedIndex(0);
+        jTextField20.setText("");
+        jTextField21.setText("");
+        jTextField22.setText("");
+        jTextField23.setText("");
+    }
 
     /**
      * @param args the command line arguments
